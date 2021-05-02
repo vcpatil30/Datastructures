@@ -147,21 +147,21 @@ namespace DataStructure
             Serialize(node.Right, sb);         
         }
 
-        public void Deserialize(string strBinTree)
-        {
-            string[] strTokens = strBinTree.Split(',');
+        // public void Deserialize(string strBinTree)
+        // {
+        //     string[] strTokens = strBinTree.Split(',');
             
-            foreach(var strToken in strTokens)
-            {
-                Deserialize(strToken);
-            }
-        }
+        //     foreach(var strToken in strTokens)
+        //     {
+        //         Deserialize(strToken);
+        //     }
+        // }
 
-        public void Deserialize(string strToken)
-        {
+        // public void Deserialize(string strToken)
+        // {
             
 
-        }
+        // }
 
         public static void TestBinaryTree()
         {
