@@ -143,6 +143,8 @@ namespace DataStructure
 
             sb.AppendFormat("{0},", node.Val);
 
+
+
             Serialize(node.Left, sb);
             Serialize(node.Right, sb);         
         }
@@ -163,20 +165,59 @@ namespace DataStructure
 
         // }
 
+
+        //Difference between sums of odd level and even level nodes of a Binary Tree
+
+        public void DiffBetweenEvenAndOddLevelNodes(BTNode node, int level, ref int diff)
+        {
+            if(node == null)
+                return;
+
+            if(level%2!=0)
+                diff += node.Val;
+            else 
+                diff -= node.Val;
+
+            DiffBetweenEvenAndOddLevelNodes(node.Left, level+1, ref diff);
+            DiffBetweenEvenAndOddLevelNodes(node.Right, level+1, ref diff);
+        }
+
+        //Difference between sums of odd level and even level nodes of a Binary Tree
+        //https://www.geeksforgeeks.org/difference-between-sums-of-odd-and-even-levels/?ref=rp
+        //https://www.geeksforgeeks.org/difference-between-sums-of-odd-and-even-levels/?ref=rp
+        public void DiffBetweenEvenAndOddLevelNodes()
+        {
+            Queue<BTNode> queue = new Queue<BTNode>();
+            queue.Enqueue(this.Root);
+            int oddSum =0, evenSum=0;
+
+            while(queue.Count != 0)
+            {
+                BTNode cur = queue.Dequeue();
+                                
+            }
+        }
+
         public static void TestBinaryTree()
         {
             //int[] nums = {5, 3, 10, 1, 4, 7, 12, 2 }; //2 should be inserted immediately after root to the left
-            int[] nums = Utility.GenerateRandomNumbers(30, 10, 90);
+            int[] nums = Utility.GenerateRandomNumbers(20, 10, 99);
             BT bt = new BT();
             bt.Init(nums);
             
-            List<int> list = new List<int>();
-            bt.GetInorderRecursive(bt.Root, list);
-            Utility.Print(list);
+            // List<int> list = new List<int>();
+            // bt.GetInorderRecursive(bt.Root, list);
+            // Utility.Print(list);
 
             Console.WriteLine("Single child Nodes:{0}", bt.CountSingleChildNodes());
+            //Console.WriteLine("Serialized: {0}", bt.Serialize());
+            
+            // int diff = 0;
+            // bt.DiffBetweenEvenAndOddLevelNodes(bt.Root, 0, ref diff);
+            // Console.WriteLine("Diff: {0}", diff);
 
-            Console.WriteLine("Serialized: {0}", bt.Serialize());
+
+            Utility.PrintTree(bt.Root);
 
             //deserialize test
             string strBinTree = "60,87,54,53,59,X,X,35,X,X,28,39,X,X,44,X,X,71,42,20,X,X,24,X,X,55,37,X,X,22,X,X,59,67,40,89,X,X,40,X,X,82,84,X,X,37,X,X,86,20,33,X,X,23,X,X,77,32,X,X,X,";
