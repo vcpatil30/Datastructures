@@ -17,7 +17,10 @@ namespace DataStructure
             //SLinkList.TestSLinkList();
             
             //DLinkList.TestDLinkList();
-            BT.TestBinaryTree();
+            //BT.TestBinaryTree();
+            //BT.TestDeSerializeTree();
+            //BT.TestDiffBetweenEvenAndOddLevelNodes();
+            BT.TestGoodNodes();
         }
 
         static void QuickSortMain(string[] args)

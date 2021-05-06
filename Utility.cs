@@ -31,9 +31,7 @@ namespace DataStructure
             Console.WriteLine("");
         }
 
-     
-
-        //PrintTree Helpers
+        //=============================Display Tree Diagram helpers=================================
         static public void PrintEmptyCells(int num)
         {
             for(int i=0; i<num; i++)
@@ -42,11 +40,9 @@ namespace DataStructure
             }
         }
 
-
         static public int CalculateGap(int n)
         {
             int gap =0;
-
             for(int i=0; i<n; i++)
             {
                 gap = (gap * 2) + 2;
@@ -55,10 +51,10 @@ namespace DataStructure
         }
 
 
-        static public void PrintTree(BTNode node)
+        static public void DrawTree(BTNode node)
         {
             Dictionary<int, List<string>> treeValues = new Dictionary<int, List<string>>();
-            PrintTree(node,0,treeValues);
+            DrawTree(node,0,treeValues);
 
             int height = treeValues.Count-1; 
 
@@ -78,7 +74,7 @@ namespace DataStructure
             Console.WriteLine("");
         }
 
-        static public void PrintTree(BTNode node, int level, Dictionary<int, List<string>> treeValues)
+        static public void DrawTree(BTNode node, int level, Dictionary<int, List<string>> treeValues)
         {
             List<string> levelValues;
             if(!treeValues.TryGetValue(level, out levelValues))
@@ -96,10 +92,9 @@ namespace DataStructure
             {
                 levelValues.Add(node.Val.ToString());
             }
-
-            
-            PrintTree(node.Left, level+1,  treeValues);
-            PrintTree(node.Right, level+1,  treeValues);
+           
+            DrawTree(node.Left, level+1,  treeValues);
+            DrawTree(node.Right, level+1,  treeValues);
         }
     }
 }
