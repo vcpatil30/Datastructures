@@ -20,7 +20,8 @@ namespace DataStructure
             //BT.TestBinaryTree();
             //BT.TestDeSerializeTree();
             //BT.TestDiffBetweenEvenAndOddLevelNodes();
-            BT.TestGoodNodes();
+            //BT.TestGoodNodes();
+            BT.TestInvert();
         }
 
         static void QuickSortMain(string[] args)

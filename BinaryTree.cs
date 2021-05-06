@@ -208,7 +208,96 @@ namespace DataStructure
             }
         }
 
+
+        //=============================== Invert the tree, Basically it's a veritcal mirror image of the tree==========================
+        public void Invert_InPlace_1(BTNode node)  //In place Invert
+        {
+            if(node == null)
+                return;
+
+            BTNode temp = node.Left;
+            node.Left = node.Right;
+            node.Right = temp;
+
+            Invert_InPlace_1(node.Left);
+            Invert_InPlace_1(node.Right);
+        }
+
+        
+        public BTNode Invert_InPlace_2(BTNode node)  //In place Invert
+        {
+            if(node == null)
+                return null;
+
+            //make sure you use temp variables here. If you directly assign to node.left it will mess up the tree
+            BTNode left = Invert_InPlace_2(node.Left);
+            BTNode right = Invert_InPlace_2(node.Right);
+            node.Left = right;
+            node.Right = left;
+            return node;
+        }
+
+        public void Invert_InPlace_Iterative(BTNode root)
+        {
+            Queue<BTNode> queue = new Queue<BTNode>();
+
+            queue.Enqueue(root);
+
+            while(queue.Count !=0)
+            {
+                BTNode node = queue.Dequeue();
+
+                if(node.Left != null)
+                    queue.Enqueue(node.Left);
+                if(node.Right != null)
+                    queue.Enqueue(node.Right);
+
+                BTNode temp = node.Left;
+                node.Left = node.Right;
+                node.Right = temp;
+            }
+        }
+
+
+
+        public BTNode Invert_Copy(BTNode node)  //Leave the existing tree intact, make a copy of inverted tree and return 
+        {
+            if(node == null)
+                return null;
+
+            BTNode newNode = new BTNode(node.Val);
+
+            newNode.Right = Invert_Copy(node.Left);
+            newNode.Left = Invert_Copy(node.Right);
+            return newNode;
+        }
+
         //==========================Test methods =================================
+
+        public static void TestInvert() 
+        {
+            int[] nums = Utility.GenerateRandomNumbers(20, 10, 99);
+            BT bt = new BT();
+            bt.Init(nums);
+            
+            Utility.DrawTree(bt.Root);
+            bt.Invert_InPlace_Iterative(bt.Root);
+            Utility.DrawTree(bt.Root);
+
+            // Utility.DrawTree(bt.Root);
+            // bt.Invert_InPlace_1(bt.Root);
+            // Utility.DrawTree(bt.Root);
+            
+            //Utility.DrawTree(bt.Root);
+            //bt.Invert_InPlace_2(bt.Root);
+            //Utility.DrawTree(bt.Root);
+
+            // Utility.DrawTree(bt.Root);
+            // BTNode invertedTree = bt.Invert_Copy(bt.Root);
+            // Utility.DrawTree(bt.Root);
+            // Utility.DrawTree(invertedTree);
+        }
+
         public static void TestInorderTree()
         {
             int[] nums = Utility.GenerateRandomNumbers(20, 10, 99);
