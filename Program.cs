@@ -21,7 +21,8 @@ namespace DataStructure
             //BT.TestDeSerializeTree();
             //BT.TestDiffBetweenEvenAndOddLevelNodes();
             //BT.TestGoodNodes();
-            BT.TestInvert();
+            //BT.TestInvert();
+            LRU_Cache.TestLRU_Cache();
         }
 
         static void QuickSortMain(string[] args)

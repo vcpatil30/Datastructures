@@ -6,14 +6,21 @@ namespace DataStructure
     public partial class DLLNode
     {
         public int Val;
+        public string Key; //Added only for LRUCache 
         public DLLNode Next;
         public DLLNode Prev;
+
+        public DLLNode(string key, int val)
+        {
+            this.Key = key;
+            this.Val = val;
+            this.Next = this.Prev = null;
+        }
 
         public DLLNode(int val)
         {
             this.Val = val;
-            this.Next = null;
-            this.Prev = null;
+            this.Next = this.Prev = null;
         }
     }
 
@@ -46,6 +53,17 @@ namespace DataStructure
             this.Size ++;
         }
 
+        public void AddFirst(DLLNode newNode)
+        {
+            DLLNode pred = Head, succ=Head.Next;
+            
+            newNode.Prev = pred;
+            newNode.Next = succ;
+            pred.Next = newNode;
+            succ.Prev = newNode;
+            this.Size ++;
+        }
+
         public void Delete(int index)
         {
             DLLNode pred = Head, succ=null;
@@ -59,6 +77,24 @@ namespace DataStructure
             pred.Next = succ;
             succ.Prev = pred;
             this.Size--;
+        }
+
+        public void Delete(DLLNode delNode)
+        {
+            DLLNode pred = delNode.Prev, succ=delNode.Next;
+
+            if(pred == null || succ == null )
+                return; //Can NOT delete Head Or Tail
+
+            pred.Next = succ;
+            succ.Prev = pred;
+            this.Size--;
+        }
+
+        public DLLNode GetLast()
+        {
+            return this.Tail.Prev;
+
         }
 
         public void Print()
