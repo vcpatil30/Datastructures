@@ -22,7 +22,11 @@ namespace DataStructure
             //BT.TestDiffBetweenEvenAndOddLevelNodes();
             //BT.TestGoodNodes();
             //BT.TestInvert();
-            LRU_Cache.TestLRU_Cache();
+            //LRU_Cache.TestLRU_Cache();
+            
+            //LFU_Cache.TestLFU_Cache();
+            //LFU_Cache.TestLFU_Cache_MinFrequencyTest();
+            LFU_Cache.TestLFU_Cache_Stress();
         }
 
         static void QuickSortMain(string[] args)
